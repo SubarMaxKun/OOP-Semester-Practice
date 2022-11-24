@@ -24,11 +24,11 @@ public class Router {
 
     System.out.println(
         "Для продовження оберіть потрібний пункт:" + '\n' + "0) Вихід" + "\t\t\t"
-            + "1) Реєстрація"  + "\t\t\t" + "2) Авторизація");
+            + "1) Реєстрація" + "\t\t\t" + "2) Авторизація");
     ChooseOption();
   }
 
-  private void ChooseOption(){
+  private void ChooseOption() {
     loop:
     while (true) {
       try {

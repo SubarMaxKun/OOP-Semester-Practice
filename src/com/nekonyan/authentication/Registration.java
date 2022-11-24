@@ -22,7 +22,6 @@ public class Registration {
     password = scanner.nextLine();
     passwordHasher.passwordHasher(password);
     hashedPassword = String.valueOf(passwordHasher.shaInBytes);
-
     boolean exist = file.exists();
     writeToFile(exist);
   }
@@ -30,10 +29,12 @@ public class Registration {
   private void writeToFile(boolean append) throws IOException {
 
     try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
-      fileWriter.append(username + "|" + hashedPassword);
+      fileWriter.append(username + ":" + hashedPassword);
       if (append) {
         fileWriter.newLine();
       }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
