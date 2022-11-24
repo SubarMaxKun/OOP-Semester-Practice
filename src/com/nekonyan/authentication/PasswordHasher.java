@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordHasher {
   private static final Charset UTF_8 = StandardCharsets.UTF_8;
-  public byte[] shaInBytes;
+  public String shaInBytes;
 
   private static byte[] digest(byte[] input, String algorithm) {
     MessageDigest md;
@@ -16,8 +16,7 @@ public class PasswordHasher {
     } catch (NoSuchAlgorithmException e) {
       throw new IllegalArgumentException(e);
     }
-    byte[] result = md.digest(input);
-    return result;
+    return md.digest(input);
   }
 
   private static String bytesToHex(byte[] bytes) {
@@ -28,8 +27,7 @@ public class PasswordHasher {
     return sb.toString();
   }
 
-  public byte[] passwordHasher(String password){
-    shaInBytes = PasswordHasher.digest(password.getBytes(UTF_8), "SHA3-256");
-    return shaInBytes;
+  public void passwordHasher(String password){
+    shaInBytes = bytesToHex(PasswordHasher.digest(password.getBytes(UTF_8), "SHA3-256"));
   }
 }
