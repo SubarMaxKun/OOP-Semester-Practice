@@ -2,33 +2,36 @@ package com.nekonyan.authentication;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Registration {
+
+  PasswordHasher passwordHasher = new PasswordHasher();
   Scanner scanner = new Scanner(System.in);
   File file = new File("./src/com/nekonyan/resources/Users.txt");
+  private String username;
+  private String password;
+  private String hashedPassword;
 
   public void registration() throws IOException {
-    boolean exist = file.exists();
-    writeToFile(exist);
-  }
-
-  private void writeToFile(boolean append) throws IOException{
-    String username;
-    String password;
-
     System.out.println("Введіть логін:");
     username = scanner.nextLine();
     System.out.println("Введіть пароль:");
     password = scanner.nextLine();
+    passwordHasher.passwordHasher(password);
+    hashedPassword = String.valueOf(passwordHasher.shaInBytes);
 
-    try (var fileWriter = new BufferedWriter(new FileWriter(file, append))){
-      fileWriter.append(username + "|" + password);
-      if (append){
+    boolean exist = file.exists();
+    writeToFile(exist);
+  }
+
+  private void writeToFile(boolean append) throws IOException {
+
+    try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
+      fileWriter.append(username + "|" + hashedPassword);
+      if (append) {
         fileWriter.newLine();
       }
     }
