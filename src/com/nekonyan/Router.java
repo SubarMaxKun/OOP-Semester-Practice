@@ -25,10 +25,31 @@ public class Router {
     System.out.println(
         "Для продовження оберіть потрібний пункт:" + '\n' + "0) Вихід" + "\t\t\t"
             + "1) Реєстрація" + "\t\t\t" + "2) Авторизація");
-    ChooseOption();
+    ChooseAuthentication();
   }
 
-  private void ChooseOption() {
+  public void ChooseCatalogue(){
+    System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати");
+    loop:
+    while (true) {
+      try {
+        int choosenOption = scanner.nextInt();
+        switch (choosenOption) {
+          case 1 -> {
+            break loop;
+          }
+          case 2 -> {
+            break loop;
+          }
+        }
+      } catch (Exception e) {
+        System.out.println("Виберіть коректне значення:");
+        scanner.next();
+      }
+    }
+  }
+
+  private void ChooseAuthentication() {
     loop:
     while (true) {
       try {

@@ -1,5 +1,8 @@
 package com.nekonyan.authentication;
 
+import com.nekonyan.Router;
+import com.nekonyan.UserController;
+import com.nekonyan.objects.User;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,7 +26,9 @@ public class Registration {
     passwordHasher.passwordHasher(password);
     hashedPassword = String.valueOf(passwordHasher.shaInBytes);
     boolean exist = file.exists();
+    new UserController().CreateUser(username);
     writeToFile(exist);
+    new Router().ChooseCatalogue();
   }
 
   private void writeToFile(boolean append) throws IOException {
