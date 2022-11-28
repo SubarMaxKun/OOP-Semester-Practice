@@ -2,6 +2,9 @@ package com.nekonyan;
 
 import com.nekonyan.authentication.Authorization;
 import com.nekonyan.authentication.Registration;
+import com.nekonyan.catalogues.Cameras;
+import com.nekonyan.catalogues.Lenses;
+import com.nekonyan.objects.Lens;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -28,27 +31,6 @@ public class Router {
     chooseAuthentication();
   }
 
-  public void chooseCatalogue(){
-    System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати");
-    loop:
-    while (true) {
-      try {
-        int choosenOption = scanner.nextInt();
-        switch (choosenOption) {
-          case 1 -> {
-            break loop;
-          }
-          case 2 -> {
-            break loop;
-          }
-        }
-      } catch (Exception e) {
-        System.out.println("Виберіть коректне значення:");
-        scanner.next();
-      }
-    }
-  }
-
   private void chooseAuthentication() {
     loop:
     while (true) {
@@ -72,4 +54,28 @@ public class Router {
       }
     }
   }
+
+  public void chooseCatalogue(){
+    System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати");
+    loop:
+    while (true) {
+      try {
+        int choosenOption = scanner.nextInt();
+        switch (choosenOption) {
+          case 1 -> {
+            new Lenses().showLensCatalogue();
+            break loop;
+          }
+          case 2 -> {
+            new Cameras().showCameraCatalogue();
+            break loop;
+          }
+        }
+      } catch (Exception e) {
+        System.out.println("Виберіть коректне значення:");
+        scanner.next();
+      }
+    }
+  }
+
 }
