@@ -2,7 +2,6 @@ package com.nekonyan.authentication;
 
 import com.nekonyan.Router;
 import com.nekonyan.UserController;
-import com.nekonyan.objects.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -27,8 +26,8 @@ public class Authorization {
     passwordHasher.passwordHasher(password);
     hashedPassword = passwordHasher.shaInBytes;
     if (checkAuthenticity()) {
-      new UserController().CreateUser(username);
-      new Router().ChooseCatalogue();
+      new UserController().createUser(username);
+      new Router().chooseCatalogue();
     } else {
       System.out.println("bad");
     }

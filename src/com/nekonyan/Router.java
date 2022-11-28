@@ -10,7 +10,7 @@ public class Router {
 
   Scanner scanner = new Scanner(System.in);
 
-  public void StartSession() {
+  public void startSession() {
 
     try (BufferedReader br = new BufferedReader(
         new FileReader("./src/com/nekonyan/resources/Title.txt"))) {
@@ -25,10 +25,10 @@ public class Router {
     System.out.println(
         "Для продовження оберіть потрібний пункт:" + '\n' + "0) Вихід" + "\t\t\t"
             + "1) Реєстрація" + "\t\t\t" + "2) Авторизація");
-    ChooseAuthentication();
+    chooseAuthentication();
   }
 
-  public void ChooseCatalogue(){
+  public void chooseCatalogue(){
     System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати");
     loop:
     while (true) {
@@ -49,7 +49,7 @@ public class Router {
     }
   }
 
-  private void ChooseAuthentication() {
+  private void chooseAuthentication() {
     loop:
     while (true) {
       try {
