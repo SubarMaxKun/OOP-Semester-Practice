@@ -1,42 +1,70 @@
 package com.nekonyan.catalogues;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import com.nekonyan.GoodsController;
+import com.nekonyan.Router;
+import com.nekonyan.UserController;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Cameras {
 
   Scanner scanner = new Scanner(System.in);
-  int choosenItem;
+  List<String> temps = new ArrayList<String>();
 
   public void showCameraCatalogue() {
-    try (BufferedReader br = new BufferedReader(
-        new FileReader("./src/com/nekonyan/resources/Cameras.txt"))) {
-      String line;
-      int a = 0;
+    try (Scanner inFile1 = new Scanner(
+        new File("./src/com/nekonyan/resources/Cameras.txt")).useDelimiter("\n")) {
+      String token;
+      int currentItem = 0;
 
-      System.out.println("Виберіть камеру для покупки:");
-      while ((line = br.readLine()) != null) {
-        int currentItem = a += 1;
-        System.out.println(a + ") " + line);
+      while (inFile1.hasNext()) {
+        token = inFile1.next();
+        temps.add(token);
+      }
+      inFile1.close();
+
+      System.out.println("Виберіть фотоапарат для покупки:");
+      String[] tempsArray = temps.toArray(new String[0]);
+      for (String s : tempsArray) {
+        currentItem += 1;
+        System.out.println(currentItem + ") " + s.replace(":", "   "));
       }
     } catch (Exception e) {
       e.getStackTrace();
     }
     System.out.println("0) - повернутися назад");
-    setChoosenItem();
+    defineChoosenItem();
   }
 
-  private void setChoosenItem() {
-    loop:
+  private void defineChoosenItem() {
     while (true) {
       try {
-        scanner.nextInt();
-        break loop;
+        int choosenItem = scanner.nextInt();
+        if (choosenItem <= temps.size() && choosenItem > 0) {
+          // Змінити тут
+          setChoosenItem(choosenItem - 1);
+//          System.out.println(temps.get(choosenItem - 1));
+          break;
+        } else if (choosenItem == 0) {
+          new Router().chooseCatalogue();
+          break;
+        } else {
+          System.out.println("Виберіть коректне значення:1");
+        }
       } catch (Exception e) {
         System.out.println("Виберіть коректне значення:");
         scanner.next();
       }
     }
+  }
+
+  private void setChoosenItem(int choosenItem) {
+    String camera = temps.get(choosenItem);
+    String[] splittedString = camera.split(":");
+    new GoodsController().setCamera(splittedString[0], splittedString[1], splittedString[splittedString.length - 1]);
+    new GoodsController().getCamera();
+    new UserController().getUser();
   }
 }

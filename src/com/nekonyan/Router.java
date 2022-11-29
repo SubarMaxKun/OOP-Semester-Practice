@@ -70,6 +70,7 @@ public class Router {
             new Cameras().showCameraCatalogue();
             break loop;
           }
+          default -> System.out.println("Виберіть коректне значення:");
         }
       } catch (Exception e) {
         System.out.println("Виберіть коректне значення:");
