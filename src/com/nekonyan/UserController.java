@@ -9,7 +9,7 @@ public class UserController {
     user.setUsername(username);
   }
 
-  public void getUser(){
-    System.out.println(user.getUsername());
+  public String getUser(){
+    return user.getUsername();
   }
 }

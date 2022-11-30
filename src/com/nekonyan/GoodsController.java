@@ -19,7 +19,7 @@ public class GoodsController {
     camera.setPrice(price);
   }
 
-  public void getCamera(){
-    System.out.println("Your cam is" + camera.getBrand() + camera.getModel() + camera.getPrice());
+  public void getLens(){
+    System.out.println(lens.getBrand());
   }
 }

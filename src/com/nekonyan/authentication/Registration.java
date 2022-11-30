@@ -11,8 +11,10 @@ import java.util.Scanner;
 public class Registration {
 
   PasswordHasher passwordHasher = new PasswordHasher();
+  UserController userController = new UserController();
   Scanner scanner = new Scanner(System.in);
   File file = new File("./src/com/nekonyan/resources/Users.txt");
+
   private String username;
   private String password;
   private String hashedPassword;
@@ -25,7 +27,7 @@ public class Registration {
     passwordHasher.passwordHasher(password);
     hashedPassword = String.valueOf(passwordHasher.shaInBytes);
     boolean exist = file.exists();
-    new UserController().createUser(username);
+    userController.createUser(username);
     writeToFile(exist);
     new Router().chooseCatalogue();
   }
@@ -33,7 +35,7 @@ public class Registration {
   private void writeToFile(boolean append) throws IOException {
 
     try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
-      fileWriter.append(username + ":" + hashedPassword);
+      fileWriter.append(username).append(":").append(hashedPassword);
       if (append) {
         fileWriter.newLine();
       }

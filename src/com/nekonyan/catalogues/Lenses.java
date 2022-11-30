@@ -1,5 +1,6 @@
 package com.nekonyan.catalogues;
 
+import com.nekonyan.GoodsController;
 import com.nekonyan.Router;
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 
 public class Lenses {
   Scanner scanner = new Scanner(System.in);
+  GoodsController goodsController = new GoodsController();
   List<String> temps = new ArrayList<String>();
 
   public void showLensCatalogue() {
@@ -19,7 +21,7 @@ public class Lenses {
       int currentItem = 0;
 
       while (inFile1.hasNext()) {
-        token = inFile1.next().replace(":", "   ");
+        token = inFile1.next();
         temps.add(token);
       }
       inFile1.close();
@@ -28,24 +30,26 @@ public class Lenses {
       String[] tempsArray = temps.toArray(new String[0]);
       for (String s : tempsArray) {
         currentItem += 1;
-        System.out.println(currentItem + ") " + s);
+        System.out.println(currentItem + ") " + s.replace(":", "   "));
       }
     } catch (Exception e) {
       e.getStackTrace();
     }
     System.out.println("0) - повернутися назад");
-    setChoosenItem();
+    defineChoosenItem();
   }
 
-  private void setChoosenItem() {
+  private void defineChoosenItem() {
     while (true) {
       try {
-        int a = scanner.nextInt();
-        if (a <= temps.size() && a > 0) {
+        int choosenItem = scanner.nextInt();
+        if (choosenItem <= temps.size() && choosenItem > 0) {
           // Змінити тут
-          System.out.println(temps.get(a - 1)); //--------
+          setChoosenItem(choosenItem - 1);
+//          System.out.println(temps.get(choosenItem - 1));
+          new Router().chooseCatalogue();
           break;
-        } else if (a == 0) {
+        } else if (choosenItem == 0) {
           new Router().chooseCatalogue();
           break;
         } else {
@@ -56,5 +60,11 @@ public class Lenses {
         scanner.next();
       }
     }
+  }
+
+  private void setChoosenItem(int choosenItem) {
+    String lens = temps.get(choosenItem);
+    String[] splittedString = lens.split(":");
+    goodsController.setLens(splittedString[0], splittedString[1], splittedString[splittedString.length - 1]);
   }
 }

@@ -12,6 +12,7 @@ public class Cameras {
 
   Scanner scanner = new Scanner(System.in);
   List<String> temps = new ArrayList<String>();
+  GoodsController goodsController = new GoodsController();
 
   public void showCameraCatalogue() {
     try (Scanner inFile1 = new Scanner(
@@ -46,12 +47,13 @@ public class Cameras {
           // Змінити тут
           setChoosenItem(choosenItem - 1);
 //          System.out.println(temps.get(choosenItem - 1));
+          new Router().chooseCatalogue();
           break;
         } else if (choosenItem == 0) {
           new Router().chooseCatalogue();
           break;
         } else {
-          System.out.println("Виберіть коректне значення:1");
+          System.out.println("Виберіть коректне значення:");
         }
       } catch (Exception e) {
         System.out.println("Виберіть коректне значення:");
@@ -63,8 +65,6 @@ public class Cameras {
   private void setChoosenItem(int choosenItem) {
     String camera = temps.get(choosenItem);
     String[] splittedString = camera.split(":");
-    new GoodsController().setCamera(splittedString[0], splittedString[1], splittedString[splittedString.length - 1]);
-    new GoodsController().getCamera();
-    new UserController().getUser();
+    goodsController.setCamera(splittedString[0], splittedString[1], splittedString[splittedString.length - 1]);
   }
 }

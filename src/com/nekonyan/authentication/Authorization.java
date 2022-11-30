@@ -12,6 +12,7 @@ public class Authorization {
 
   Scanner scanner = new Scanner(System.in);
   PasswordHasher passwordHasher = new PasswordHasher();
+  UserController userController = new UserController();
   File file = new File("./src/com/nekonyan/resources/Users.txt");
 
   private String username;
@@ -26,7 +27,7 @@ public class Authorization {
     passwordHasher.passwordHasher(password);
     hashedPassword = passwordHasher.shaInBytes;
     if (checkAuthenticity()) {
-      new UserController().createUser(username);
+      userController.createUser(username);
       new Router().chooseCatalogue();
     } else {
       System.out.println("bad");
