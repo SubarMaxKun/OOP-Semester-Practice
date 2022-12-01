@@ -56,7 +56,7 @@ public class Router {
   }
 
   public void chooseCatalogue(){
-    System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати");
+    System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати" + "\t\t\t" + "3) Кошик");
     loop:
     while (true) {
       try {
@@ -68,6 +68,10 @@ public class Router {
           }
           case 2 -> {
             new Cameras().showCameraCatalogue();
+            break loop;
+          }
+          case 3 -> {
+            new Cart().showCart();
             break loop;
           }
           default -> System.out.println("Виберіть коректне значення:");

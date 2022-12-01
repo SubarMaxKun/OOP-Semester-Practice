@@ -30,7 +30,8 @@ public class Authorization {
       userController.createUser(username);
       new Router().chooseCatalogue();
     } else {
-      System.out.println("bad");
+      System.out.println("--Логін або пароль невірні--");
+      new Router().startSession();
     }
   }
 

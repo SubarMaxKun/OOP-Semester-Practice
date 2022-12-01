@@ -6,6 +6,7 @@ import com.nekonyan.objects.Lens;
 public class GoodsController {
   Lens lens = new Lens();
   Camera camera = new Camera();
+  Cart cart = new Cart();
 
   public void setLens(String brand, String model, String price){
     lens.setBrand(brand);
@@ -19,7 +20,8 @@ public class GoodsController {
     camera.setPrice(price);
   }
 
-  public void getLens(){
-    System.out.println(lens.getBrand());
+  public void addLens(){
+    String choosenLens = lens.getBrand() + ":" + lens.getModel() + ":" + lens.getPrice();
+    cart.updateCart(choosenLens);
   }
 }

@@ -33,7 +33,6 @@ public class Registration {
   }
 
   private void writeToFile(boolean append) throws IOException {
-
     try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
       fileWriter.append(username).append(":").append(hashedPassword);
       if (append) {
