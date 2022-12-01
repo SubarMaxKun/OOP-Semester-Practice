@@ -9,16 +9,18 @@ public class GoodsController {
   Cart cart = new Cart();
 
   public void setLens(String brand, String model, String price){
+    String trimmedPrice = price.trim();
     lens.setBrand(brand);
     lens.setModel(model);
-    lens.setPrice(price);
+    lens.setPrice(trimmedPrice);
     addLens();
   }
 
   public void setCamera(String brand, String model, String price){
+    String trimmedPrice = price.trim();
     camera.setBrand(brand);
     camera.setModel(model);
-    camera.setPrice(price);
+    camera.setPrice(trimmedPrice);
     addCamera();
   }
 
