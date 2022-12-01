@@ -15,16 +15,16 @@ public class Lenses {
   List<String> temps = new ArrayList<String>();
 
   public void showLensCatalogue() {
-    try (Scanner inFile1 = new Scanner(
+    try (Scanner file = new Scanner(
         new File("./src/com/nekonyan/resources/Lenses.txt")).useDelimiter("\n")) {
       String token;
       int currentItem = 0;
 
-      while (inFile1.hasNext()) {
-        token = inFile1.next();
+      while (file.hasNext()) {
+        token = file.next();
         temps.add(token);
       }
-      inFile1.close();
+      file.close();
 
       System.out.println("Виберіть об'єктив для покупки:");
       String[] tempsArray = temps.toArray(new String[0]);

@@ -1,7 +1,5 @@
 package com.nekonyan;
 
-import com.nekonyan.authentication.Authorization;
-import com.nekonyan.authentication.Registration;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,13 +12,13 @@ public class Cart {
 
   UserController userController = new UserController();
   File file = new File(
-      "./src/com/nekonyan/resources/" + userController.getUser() + "_cart" + ".txt");
+      "./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart" + ".txt");
   List<String> temps = new ArrayList<String>();
   Scanner scanner = new Scanner(System.in);
 
   public void showCart() {
     try (Scanner inFile1 = new Scanner(
-        new File("./src/com/nekonyan/resources/" + userController.getUser() + "_cart"
+        new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
             + ".txt")).useDelimiter("\n")) {
       String token;
       int currentItem = 0;
@@ -52,15 +50,13 @@ public class Cart {
 
     try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
       fileWriter.append(choosenItem);
-      if (append) {
-        fileWriter.newLine();
-      }
+      fileWriter.newLine();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  private void chooseOption(){
+  private void chooseOption() {
     loop:
     while (true) {
       try {
