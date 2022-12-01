@@ -4,7 +4,6 @@ import com.nekonyan.authentication.Authorization;
 import com.nekonyan.authentication.Registration;
 import com.nekonyan.catalogues.Cameras;
 import com.nekonyan.catalogues.Lenses;
-import com.nekonyan.objects.Lens;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -55,8 +54,10 @@ public class Router {
     }
   }
 
-  public void chooseCatalogue(){
-    System.out.println("Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати" + "\t\t\t" + "3) Кошик");
+  public void chooseCatalogue() {
+    System.out.println(
+        "Виберіть пункт меню:" + '\n' + "1) Об'єктиви" + "\t\t\t" + "2) Фотоапарати" + "\t\t\t"
+            + "3) Кошик" + "\t\t\t" + "4) Вийти із акаунту" + "\t\t\t" + "0) Вийти із програми");
     loop:
     while (true) {
       try {
@@ -73,6 +74,13 @@ public class Router {
           case 3 -> {
             new Cart().showCart();
             break loop;
+          }
+          case 4 -> {
+            startSession();
+            break loop;
+          }
+          case 0 -> {
+            System.exit(0);
           }
           default -> System.out.println("Виберіть коректне значення:");
         }
