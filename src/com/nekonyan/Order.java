@@ -2,59 +2,45 @@ package com.nekonyan;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Order {
 
   UserController userController = new UserController();
-  List<String> temps = new ArrayList<String>();
+  Scanner scanner = new Scanner(System.in);
+  String fullName;
+  String deliveryAddress;
 
-  public void createOrder() throws IOException {
-    readOrder();
+  public void createOrder() {
+    addDeliveryInfo();
   }
 
-/*  private void readOrder() {
-    try (Scanner inFile1 = new Scanner(
-        new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
-            + ".txt")).useDelimiter("\n")) {
-      String token;
+  private void addDeliveryInfo() {
+    System.out.println("Введіть ПІБ");
+    fullName = "ПІБ замовника: " + scanner.nextLine();
+    System.out.println("Введіть місто та адрасе для доставки");
+    deliveryAddress = "Адреса доставки: " + scanner.nextLine();
+    pasteOrder();
+  }
 
-      while (inFile1.hasNext()) {
-        token = inFile1.next();
-        temps.add(token);
-      }
-      inFile1.close();
-
-      String[] tempsArray = temps.toArray(new String[0]);
-      FileWriter fileWriter = new FileWriter(
-          "./src/com/nekonyan/carts_orders/" + userController.getUser() + "_order" + ".txt");
-      for (String s : tempsArray) {
-        fileWriter.write(s.replace(":", "   "));
-        fileWriter.close();
-      }
-    } catch (Exception e) {
-      e.getStackTrace();
-    }
-    System.out.println("0) - повернутися назад");
-  }*/
-
-  private void readOrder() throws IOException {
-    File a = new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
+  private void pasteOrder() {
+    File cart = new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
         + ".txt");
-    File b = new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_order" + ".txt");
+    File order = new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_order" + ".txt");
 
     try (FileInputStream fileInputStream = new FileInputStream(
-        a); FileOutputStream fileOutputStream = new FileOutputStream(b)) {
+        cart); FileOutputStream fileOutputStream = new FileOutputStream(order)) {
       int i;
       while ((i = fileInputStream.read()) != -1) {
         fileOutputStream.write(i);
       }
+      fileOutputStream.write((fullName + "\n").getBytes());
+      fileOutputStream.write(deliveryAddress.getBytes());
+      System.out.println("--Ваше замовлення успішно створено--");
+      new Router().chooseCatalogue();
     } catch (Exception e) {
-      System.out.println("Error Found: " + e.getMessage());
+      e.getStackTrace();
     }
   }
 }

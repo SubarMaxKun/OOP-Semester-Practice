@@ -13,7 +13,7 @@ public class Cart {
   UserController userController = new UserController();
   File file = new File(
       "./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart" + ".txt");
-  List<String> temps = new ArrayList<String>();
+  List<String> temps = new ArrayList<>();
   Scanner scanner = new Scanner(System.in);
 
   public void showCart() {
@@ -35,6 +35,7 @@ public class Cart {
         currentItem += 1;
         System.out.println(currentItem + ") " + s.replace(":", "   "));
       }
+      System.out.println("Суму вашого замовлення: " + orderSum() + "грн");
 
       System.out.println("Виберіть пункт меню:" + '\n' + "1) Оформити замовлення" + "\t\t\t"
           + "0) Повернутися назад");
@@ -43,6 +44,19 @@ public class Cart {
       System.out.println("--Ваш кошик поки що пустий, додайте предмети для того щоб продовжити--");
       new Router().chooseCatalogue();
     }
+  }
+
+  private int orderSum(){
+    int Sum = 0;
+
+    for (String a : temps) {
+      String[] b = a.split(":");
+      String c = b[b.length - 1];
+      int d = Integer.parseInt(c.substring(0, c.length() - 4));
+      Sum += d;
+    }
+
+    return Sum;
   }
 
   public void updateCart(String choosenItem) {
