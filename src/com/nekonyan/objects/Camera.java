@@ -1,6 +1,7 @@
 package com.nekonyan.objects;
 
 public class Camera {
+
   private String brand;
   private String model;
   private String price;

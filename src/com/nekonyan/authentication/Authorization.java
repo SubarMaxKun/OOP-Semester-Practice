@@ -16,14 +16,13 @@ public class Authorization {
   File file = new File("./src/com/nekonyan/resources/Users.txt");
 
   private String username;
-  private String password;
   private String hashedPassword;
 
-  public void authorization() throws IOException {
+  public void authorization() {
     System.out.println("Введіть логін:");
     username = scanner.nextLine();
     System.out.println("Введіть пароль:");
-    password = scanner.nextLine();
+    String password = scanner.nextLine();
     passwordHasher.passwordHasher(password);
     hashedPassword = passwordHasher.shaInBytes;
     if (checkAuthenticity()) {
@@ -35,10 +34,10 @@ public class Authorization {
     }
   }
 
-  private boolean checkAuthenticity() throws IOException {
+  private boolean checkAuthenticity() {
     String line;
     String[] userInfo;
-    try (BufferedReader reader = new BufferedReader(new FileReader(file));) {
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
       while ((line = reader.readLine()) != null) {
         userInfo = line.split(":");
         if (userInfo[0].equals(username) && userInfo[1].equals(hashedPassword)) {

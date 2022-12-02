@@ -17,8 +17,8 @@ public class Cart {
   Scanner scanner = new Scanner(System.in);
 
   public void showCart() {
-    try (Scanner inFile1 = new Scanner(
-        new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
+    try (Scanner inFile1 = new Scanner(new File(
+        "./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
             + ".txt")).useDelimiter("\n")) {
       String token;
       int currentItem = 0;
@@ -46,7 +46,7 @@ public class Cart {
     }
   }
 
-  private int orderSum(){
+  private int orderSum() {
     int Sum = 0;
 
     for (String a : temps) {

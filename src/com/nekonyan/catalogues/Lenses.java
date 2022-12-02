@@ -2,17 +2,16 @@ package com.nekonyan.catalogues;
 
 import com.nekonyan.GoodsController;
 import com.nekonyan.Router;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Lenses {
+
   Scanner scanner = new Scanner(System.in);
   GoodsController goodsController = new GoodsController();
-  List<String> temps = new ArrayList<String>();
+  List<String> temps = new ArrayList<>();
 
   public void showLensCatalogue() {
     try (Scanner file = new Scanner(
@@ -65,6 +64,7 @@ public class Lenses {
   private void setChoosenItem(int choosenItem) {
     String lens = temps.get(choosenItem);
     String[] splittedString = lens.split(":");
-    goodsController.setLens(splittedString[0], splittedString[1], splittedString[splittedString.length - 1]);
+    goodsController.setLens(splittedString[0], splittedString[1],
+        splittedString[splittedString.length - 1]);
   }
 }

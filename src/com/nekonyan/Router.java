@@ -79,9 +79,7 @@ public class Router {
             startSession();
             break loop;
           }
-          case 0 -> {
-            System.exit(0);
-          }
+          case 0 -> System.exit(0);
           default -> System.out.println("Виберіть коректне значення:");
         }
       } catch (Exception e) {

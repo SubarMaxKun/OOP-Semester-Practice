@@ -10,6 +10,6 @@ public class UserController {
   }
 
   public String getUser(){
-    return user.getUsername();
+    return User.getUsername();
   }
 }

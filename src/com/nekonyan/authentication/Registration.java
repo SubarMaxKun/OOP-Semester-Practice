@@ -16,14 +16,13 @@ public class Registration {
   File file = new File("./src/com/nekonyan/resources/Users.txt");
 
   private String username;
-  private String password;
   private String hashedPassword;
 
-  public void registration() throws IOException {
+  public void registration() {
     System.out.println("Введіть логін:");
     username = scanner.nextLine();
     System.out.println("Введіть пароль:");
-    password = scanner.nextLine();
+    String password = scanner.nextLine();
     passwordHasher.passwordHasher(password);
     hashedPassword = String.valueOf(passwordHasher.shaInBytes);
     boolean exist = file.exists();
@@ -32,7 +31,7 @@ public class Registration {
     new Router().chooseCatalogue();
   }
 
-  private void writeToFile(boolean append) throws IOException {
+  private void writeToFile(boolean append) {
     try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
       fileWriter.append(username).append(":").append(hashedPassword);
       fileWriter.newLine();

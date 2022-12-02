@@ -6,13 +6,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class PasswordHasher {
+
   private static final Charset UTF_8 = StandardCharsets.UTF_8;
   public String shaInBytes;
 
-  private static byte[] digest(byte[] input, String algorithm) {
+  private static byte[] digest(byte[] input) {
     MessageDigest md;
     try {
-      md = MessageDigest.getInstance(algorithm);
+      md = MessageDigest.getInstance("SHA3-256");
     } catch (NoSuchAlgorithmException e) {
       throw new IllegalArgumentException(e);
     }
@@ -27,7 +28,7 @@ public class PasswordHasher {
     return sb.toString();
   }
 
-  public void passwordHasher(String password){
-    shaInBytes = bytesToHex(PasswordHasher.digest(password.getBytes(UTF_8), "SHA3-256"));
+  public void passwordHasher(String password) {
+    shaInBytes = bytesToHex(PasswordHasher.digest(password.getBytes(UTF_8)));
   }
 }

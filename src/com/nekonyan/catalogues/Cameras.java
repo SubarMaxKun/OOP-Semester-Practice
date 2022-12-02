@@ -2,7 +2,6 @@ package com.nekonyan.catalogues;
 
 import com.nekonyan.GoodsController;
 import com.nekonyan.Router;
-import com.nekonyan.UserController;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class Cameras {
 
   Scanner scanner = new Scanner(System.in);
-  List<String> temps = new ArrayList<String>();
+  List<String> temps = new ArrayList<>();
   GoodsController goodsController = new GoodsController();
 
   public void showCameraCatalogue() {
@@ -65,6 +64,7 @@ public class Cameras {
   private void setChoosenItem(int choosenItem) {
     String camera = temps.get(choosenItem);
     String[] splittedString = camera.split(":");
-    goodsController.setCamera(splittedString[0], splittedString[1], splittedString[splittedString.length - 1]);
+    goodsController.setCamera(splittedString[0], splittedString[1],
+        splittedString[splittedString.length - 1]);
   }
 }

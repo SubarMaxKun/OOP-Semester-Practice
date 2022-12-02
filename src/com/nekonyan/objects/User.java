@@ -1,6 +1,7 @@
 package com.nekonyan.objects;
 
 public class User {
+
   private static String username;
 
   public static String getUsername() {
