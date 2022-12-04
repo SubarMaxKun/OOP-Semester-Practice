@@ -15,7 +15,7 @@ public class Lenses {
 
   public void showLensCatalogue() {
     try (Scanner file = new Scanner(
-        new File("./src/com/nekonyan/resources/Lenses.txt")).useDelimiter("\n")) {
+        new File("./resources/Lenses.txt")).useDelimiter("\n")) {
       String token;
       int currentItem = 0;
 

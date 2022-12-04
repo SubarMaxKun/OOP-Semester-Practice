@@ -15,7 +15,7 @@ public class Router {
   public void startSession() {
 
     try (BufferedReader br = new BufferedReader(
-        new FileReader("./src/com/nekonyan/resources/Title.txt"))) {
+        new FileReader("./resources/Title.txt"))) {
       String line;
       while ((line = br.readLine()) != null) {
         System.out.println(line);

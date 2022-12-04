@@ -15,7 +15,7 @@ public class Cameras {
 
   public void showCameraCatalogue() {
     try (Scanner file = new Scanner(
-        new File("./src/com/nekonyan/resources/Cameras.txt")).useDelimiter("\n")) {
+        new File("./resources/Cameras.txt")).useDelimiter("\n")) {
       String token;
       int currentItem = 0;
 

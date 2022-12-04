@@ -25,9 +25,9 @@ public class Order {
   }
 
   private void pasteOrder() {
-    File cart = new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
+    File cart = new File("./carts_orders/" + userController.getUser() + "_cart"
         + ".txt");
-    File order = new File("./src/com/nekonyan/carts_orders/" + userController.getUser() + "_order" + ".txt");
+    File order = new File("./carts_orders/" + userController.getUser() + "_order" + ".txt");
 
     try (FileInputStream fileInputStream = new FileInputStream(
         cart); FileOutputStream fileOutputStream = new FileOutputStream(order)) {

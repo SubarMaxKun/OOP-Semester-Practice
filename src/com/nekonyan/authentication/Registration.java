@@ -13,7 +13,7 @@ public class Registration {
   PasswordHasher passwordHasher = new PasswordHasher();
   UserController userController = new UserController();
   Scanner scanner = new Scanner(System.in);
-  File file = new File("./src/com/nekonyan/resources/Users.txt");
+  File file = new File("./resources/Users.txt");
 
   private String username;
   private String hashedPassword;

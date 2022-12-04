@@ -12,13 +12,13 @@ public class Cart {
 
   UserController userController = new UserController();
   File file = new File(
-      "./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart" + ".txt");
+      "./carts_orders/" + userController.getUser() + "_cart" + ".txt");
   List<String> temps = new ArrayList<>();
   Scanner scanner = new Scanner(System.in);
 
   public void showCart() {
     try (Scanner inFile1 = new Scanner(new File(
-        "./src/com/nekonyan/carts_orders/" + userController.getUser() + "_cart"
+        "./carts_orders/" + userController.getUser() + "_cart"
             + ".txt")).useDelimiter("\n")) {
       String token;
       int currentItem = 0;
