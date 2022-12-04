@@ -34,6 +34,9 @@ public class Authorization {
     }
   }
 
+  /**
+   * @return
+   */
   private boolean checkAuthenticity() {
     String line;
     String[] userInfo;

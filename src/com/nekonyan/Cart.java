@@ -46,6 +46,9 @@ public class Cart {
     }
   }
 
+  /**
+   * @return
+   */
   private int orderSum() {
     int Sum = 0;
 
@@ -59,6 +62,9 @@ public class Cart {
     return Sum;
   }
 
+  /**
+   * @param choosenItem
+   */
   public void updateCart(String choosenItem) {
     boolean append = file.exists();
 

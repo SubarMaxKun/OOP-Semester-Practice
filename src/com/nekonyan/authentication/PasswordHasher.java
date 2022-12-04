@@ -10,6 +10,10 @@ public class PasswordHasher {
   private static final Charset UTF_8 = StandardCharsets.UTF_8;
   public String shaInBytes;
 
+  /**
+   * @param input
+   * @return
+   */
   private static byte[] digest(byte[] input) {
     MessageDigest md;
     try {
@@ -20,6 +24,10 @@ public class PasswordHasher {
     return md.digest(input);
   }
 
+  /**
+   * @param bytes
+   * @return
+   */
   private static String bytesToHex(byte[] bytes) {
     StringBuilder sb = new StringBuilder();
     for (byte b : bytes) {
@@ -28,6 +36,9 @@ public class PasswordHasher {
     return sb.toString();
   }
 
+  /**
+   * @param password
+   */
   public void passwordHasher(String password) {
     shaInBytes = bytesToHex(PasswordHasher.digest(password.getBytes(UTF_8)));
   }

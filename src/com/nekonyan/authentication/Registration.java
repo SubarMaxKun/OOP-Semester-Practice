@@ -31,6 +31,9 @@ public class Registration {
     new Router().chooseCatalogue();
   }
 
+  /**
+   * @param append
+   */
   private void writeToFile(boolean append) {
     try (var fileWriter = new BufferedWriter(new FileWriter(file, append))) {
       fileWriter.append(username).append(":").append(hashedPassword);

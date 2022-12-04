@@ -61,6 +61,9 @@ public class Lenses {
     }
   }
 
+  /**
+   * @param choosenItem
+   */
   private void setChoosenItem(int choosenItem) {
     String lens = temps.get(choosenItem);
     String[] splittedString = lens.split(":");

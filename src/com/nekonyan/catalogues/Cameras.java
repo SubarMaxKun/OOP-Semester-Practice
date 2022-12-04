@@ -61,6 +61,9 @@ public class Cameras {
     }
   }
 
+  /**
+   * @param choosenItem
+   */
   private void setChoosenItem(int choosenItem) {
     String camera = temps.get(choosenItem);
     String[] splittedString = camera.split(":");

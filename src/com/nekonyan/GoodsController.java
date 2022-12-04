@@ -9,6 +9,11 @@ public class GoodsController {
   Camera camera = new Camera();
   Cart cart = new Cart();
 
+  /**
+   * @param brand
+   * @param model
+   * @param price
+   */
   public void setLens(String brand, String model, String price) {
     String trimmedPrice = price.trim();
     lens.setBrand(brand);
@@ -17,6 +22,11 @@ public class GoodsController {
     addLens();
   }
 
+  /**
+   * @param brand
+   * @param model
+   * @param price
+   */
   public void setCamera(String brand, String model, String price) {
     String trimmedPrice = price.trim();
     camera.setBrand(brand);
